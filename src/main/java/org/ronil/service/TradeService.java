@@ -2,15 +2,16 @@ package org.ronil.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ronil.controller.request.TradeRequest;
-import org.ronil.entity.Stock;
-import org.ronil.entity.Trade;
-import org.ronil.entity.TradeState;
-import org.ronil.entity.Trader;
+import org.ronil.entity.*;
 import org.ronil.repository.TradeRepository;
 import org.ronil.repository.StockRepository;
 import org.ronil.repository.TraderRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -56,4 +57,30 @@ public class TradeService {
         return trade;
     }
 
+    public List<Trade> fetchAllOrders() {
+        return tradeRepository.findAll();
+    }
+
+    @Transactional
+    public void fulfillOrder(Trade buyTrade, Trade sellTrade) throws Exception {
+        if (buyTrade.getQuantity() == sellTrade.getQuantity()
+                && buyTrade.getTradeState() == TradeState.OPEN && sellTrade.getTradeState() == TradeState.OPEN) {
+            buyTrade.setTradeState(TradeState.EXECUTED);
+            buyTrade.setUpdatedAt(LocalDateTime.now());
+            sellTrade.setTradeState(TradeState.EXECUTED);
+            sellTrade.setUpdatedAt(LocalDateTime.now());
+            tradeRepository.saveAll(Arrays.asList(new Trade[]{buyTrade, sellTrade}));
+            //troubleMaker();
+            log.info("Trade matched and fulfilled: Buy:::" + buyTrade + ":SELL::: " + sellTrade);
+        }
+    }
+
+    public List<Trade> findOpenOrders(TradeType tradeType) {
+        return tradeRepository.findAllByTradeStateAndTradeType(TradeState.OPEN, tradeType);
+    }
+
+    private void troubleMaker() {
+        throw new RuntimeException("testing transactionality by throwing exception mid way");
+    }
 }
+

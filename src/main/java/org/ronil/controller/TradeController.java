@@ -8,6 +8,8 @@ import org.ronil.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequestMapping("trade")
@@ -22,6 +24,12 @@ public class TradeController {
         log.info("Requesting info for Order with id " + orderId);
         Trade trade =  tradeService.fetchOrder(orderId);
         return trade;
+    }
+
+    @GetMapping("/all")
+    public List<Trade> getAllTradeInfo() {
+        log.info("Requesting info for all trades");
+        return tradeService.fetchAllOrders();
     }
 
 

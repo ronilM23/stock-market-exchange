@@ -1,4 +1,4 @@
-package org.ronil;
+package org.ronil.data_loaders;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
