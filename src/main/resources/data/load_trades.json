@@ -1,0 +1,21 @@
+[
+  {
+    "traderId": 1,
+    "stockCode": "GRASIM",
+    "quantity": 5,
+    "tradeType": "BUY"
+  },
+  {
+    "traderId": 2,
+    "stockCode": "GRASIM",
+    "quantity": 5,
+    "tradeType": "BUY"
+  },
+  {
+    "traderId": 3,
+    "stockCode": "GRASIM",
+    "quantity": 5,
+    "tradeType": "SELL"
+  }
+
+]

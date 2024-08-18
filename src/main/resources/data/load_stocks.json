@@ -1,0 +1,32 @@
+[
+  {
+    "name": "GRASIM",
+    "stockCode": "GRASIM",
+    "category": "INFRA"
+  },
+  {
+    "name": "State bank of India",
+    "stockCode": "SBIN",
+    "category": "BANKING"
+  },
+  {
+    "name": "ICICI",
+    "stockCode": "ICICI",
+    "category": "BANKING"
+  },
+  {
+    "name": "Rail Vikas Nigam Ltd",
+    "stockCode": "RVNL",
+    "category": "INFRA"
+  },
+  {
+    "name": "Mazagaon dock shibbuilders",
+    "stockCode": "MAZAGAON",
+    "category": "DEFENSE"
+  },
+  {
+    "name": "ITC",
+    "stockCode": "ITC",
+    "category": "FMCG"
+  }
+]
